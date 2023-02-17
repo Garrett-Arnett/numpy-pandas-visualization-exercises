@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[1]:
+# In[70]:
 
 
 import pandas as pd
@@ -9,7 +9,7 @@ import numpy as np
 from pydataset import data
 
 
-# In[ ]:
+# In[2]:
 
 
 ''' Make a file named pandas_series.py or pandas_series.ipynb for the following exercises.
@@ -21,20 +21,21 @@ Use pandas to create a Series named fruits from the following list:
 Use Series attributes and methods to explore your fruits Series.'''
 
 
-# In[2]:
+# In[71]:
 
 
 fruits = ["kiwi", "mango", "strawberry", "pineapple", "gala apple", "honeycrisp apple", "tomato", "watermelon", "honeydew", "kiwi", "kiwi", "kiwi", "mango", "blueberry", "blackberry", "gooseberry", "papaya"]
 
 
-# In[5]:
+# In[4]:
 
 
-fruits_series = pd.Series(fruits)
+fruits_series = pd.Series(fru
+                          its)
 fruits_series
 
 
-# In[ ]:
+# In[5]:
 
 
 # 1. Determine the number of elements in fruits.
@@ -46,43 +47,43 @@ fruits_series
 fruits_series.size
 
 
-# In[ ]:
+# In[7]:
 
 
 # 2. Output only the index from fruits.
 
 
-# In[12]:
+# In[8]:
 
 
 fruits_series.index
 
 
-# In[ ]:
+# In[9]:
 
 
 # 3. Output only the values from fruits.
 
 
-# In[13]:
+# In[10]:
 
 
 fruits_series.values
 
 
-# In[ ]:
+# In[11]:
 
 
 # 4. Confirm the data type of the values in fruits.
 
 
-# In[17]:
+# In[12]:
 
 
 fruits_series.dtype
 
 
-# In[ ]:
+# In[13]:
 
 
 # 5. Output only the first five values from fruits. 
@@ -90,7 +91,7 @@ fruits_series.dtype
 # Output two random values from fruits.
 
 
-# In[53]:
+# In[14]:
 
 
 print(fruits_series.head(5))
@@ -100,69 +101,69 @@ print("---------------------- ")
 print(fruits_series.sample(2))
 
 
-# In[ ]:
+# In[15]:
 
 
 # 6. Run the .describe() on fruits to see what information
 # it returns when called on a Series with string values.
 
 
-# In[35]:
+# In[16]:
 
 
 fruits_series.describe()
 
 
-# In[ ]:
+# In[17]:
 
 
 # 7. Run the code necessary to produce only the 
 # unique string values from fruits.
 
 
-# In[37]:
+# In[18]:
 
 
 fruits_series.unique()
 
 
-# In[ ]:
+# In[19]:
 
 
 # 8. Determine how many times each unique string value occurs in fruits.
 
 
-# In[38]:
+# In[20]:
 
 
 fruits_series.nunique()
 
 
-# In[ ]:
+# In[21]:
 
 
 # 9. Determine the string value that occurs most frequently in fruits.
 
 
-# In[47]:
+# In[22]:
 
 
 fruits_series.value_counts()[:1]
 
 
-# In[ ]:
+# In[23]:
 
 
 # 10. Determine the string value that occurs least frequently in fruits.
 
 
-# In[60]:
+# In[24]:
 
 
 fruits_series.value_counts().sort_values()[:11]
 
 
-# In[ ]:
+# In[25]:
 
 
 ''' 5. Exercises Part II
@@ -170,7 +171,7 @@ Explore more attributes and methods while you continue to work
 with the fruits Series. '''
 
 
-# In[61]:
+# In[26]:
 
 
 # 1. Capitalize all the string values in fruits.
@@ -178,23 +179,24 @@ with the fruits Series. '''
 fruits_series.str.capitalize()
 
 
-# In[63]:
+# In[27]:
 
 
 # 2. Count the letter "a" in all the string values (use string vectorization).
-fruits_series.str.count('a')
+fruits_series.str.lower().str.count(r'[a]')
 
 
-# In[ ]:
+# In[28]:
 
 
 # 3. Output the number of vowels in each and every string value.
 
 
-# In[68]:
+# In[75]:
 
 
 fv = fruits_series.str.lower().str.count(r'[aeiou]')
+fv
 
 
 # In[ ]:
@@ -203,50 +205,56 @@ fv = fruits_series.str.lower().str.count(r'[aeiou]')
 
 
 
-# In[69]:
+# In[30]:
 
 
 num_vowels= pd.DataFrame({'fruits': fruits_series, 'vowel_count': fv})
 num_vowels # fancy
 
 
-# In[ ]:
+# In[31]:
 
 
 # 4. Write the code to get the longest string value from fruits.
 
 
-# In[72]:
+# In[88]:
 
 
-fruits_series.str.len().max()
+fruits_series[fruits_series.str.len() >= 16]
 
 
 # In[ ]:
+
+
+
+
+
+# In[33]:
 
 
 # 5. Write the code to get the string values with 5 or more letters in the name.
 
 
-# In[88]:
+# In[84]:
 
 
 fruits_series[fruits_series.str.len() >= 5]
 
 
-# In[ ]:
+# In[35]:
 
 
 # 6. Find the fruit(s) containing the letter "o" two or more times.
 
 
-# In[87]:
+# In[36]:
 
 
 fruits_series[fruits_series.apply(lambda row: row.count('o')>=2)]
 
 
-# In[93]:
+# In[37]:
 
 
 # 7. Write the code to get only the string values containing the substring "berry".
@@ -254,19 +262,19 @@ fruits_series[fruits_series.apply(lambda row: row.count('o')>=2)]
 fruits_series[fruits_series.str.contains('berry')]
 
 
-# In[ ]:
+# In[38]:
 
 
 # 8. Write the code to get only the string values containing the substring "apple".
 
 
-# In[94]:
+# In[39]:
 
 
 fruits_series[fruits_series.str.contains('apple')]
 
 
-# In[99]:
+# In[40]:
 
 
 # 9. Which string value contains the most vowels?
@@ -274,7 +282,7 @@ fruits_series[fruits_series.str.contains('apple')]
 fruits_series[fruits_series.str.lower().str.count(r'[aeiou]').max()]
 
 
-# In[ ]:
+# In[41]:
 
 
 ''' 7. Exercises Part III
@@ -284,141 +292,148 @@ into a Pandas series is to use list to convert each
 individual letter into a single string on a basic Python list.'''
 
 
-# In[101]:
+# In[42]:
 
 
 letters = pd.Series(list('hnvidduckkqxwymbimkccexbkmqygkxoyndmcxnwqarhyffsjpsrabtjzsypmzadfavyrnndndvswreauxovncxtwzpwejilzjrmmbbgbyxvjtewqthafnbkqplarokkyydtubbmnexoypulzwfhqvckdpqtpoppzqrmcvhhpwgjwupgzhiofohawytlsiyecuproguy'))
 letters 
 
 
-# In[ ]:
+# In[43]:
 
 
 # 1. Which letter occurs the most frequently in the letters Series?
 
 
-# In[114]:
+# In[44]:
 
 
 print(letters.describe().top)
 print(letters.describe().freq)
 
 
-# In[116]:
+# In[45]:
 
 
 # or
 letters.value_counts().nlargest(n=1, keep= 'all')
 
 
-# In[ ]:
+# In[46]:
 
 
 # 2.Which letter occurs the Least frequently?
 
 
-# In[117]:
+# In[47]:
 
 
 letters.value_counts().nsmallest(n=1, keep= 'all')
 
 
-# In[ ]:
+# In[48]:
 
 
 # 3. How many vowels are in the Series?
 
 
-# In[125]:
+# In[49]:
 
 
 lc = letters[letters.str.lower().str.contains(r'[aeiou]')]
 lc.count()
 
 
-# In[ ]:
+# In[50]:
 
 
 # 4. How many consonants are in the Series?
 
 
-# In[126]:
+# In[97]:
 
 
+letters[~letters.str.lower().str.contains(r'[aeiou]')]
+
+
+# In[98]:
+
+
+# or
 lcc = letters[letters.str.lower().str.contains(r'[qwrtypsdfghjklzxcvbnm]')]
 lcc.count()
 
 
-# In[ ]:
+# In[52]:
 
 
 # 5. Create a Series that has all of the same letters but uppercased.
 
 
-# In[127]:
+# In[53]:
 
 
 cap = letters.str.capitalize()
 cap
 
 
-# In[134]:
+# In[54]:
 
 
 # 6. Create a bar plot of the frequencies of the 6 most commonly occuring letters.
 
 
-# In[133]:
+# In[99]:
 
 
-letters.value_counts()[:5].plot.bar()
+letters.value_counts()[:6].plot.bar()
 
 
-# In[ ]:
+# In[56]:
 
 
 ''' Use pandas to create a Series named numbers from the 
 following list: '''
 
 
-# In[142]:
+# In[57]:
 
 
 numbers1 = ['$796,459.41', '$278.60', '$482,571.67', '$4,503,915.98', '$2,121,418.3', '$1,260,813.3', '$87,231.01', '$1,509,175.45', '$4,138,548.00', '$2,848,913.80', '$594,715.39', '$4,789,988.17', '$4,513,644.5', '$3,191,059.97', '$1,758,712.24', '$4,338,283.54', '$4,738,303.38', '$2,791,759.67', '$769,681.94', '$452,650.23']
 
 
-# In[144]:
+# In[58]:
 
 
 numbers = pd.Series(numbers1)
 numbers
 
 
-# In[ ]:
+# In[59]:
 
 
 # 1. What is the data type of the numbers Series?
 
 
-# In[146]:
+# In[60]:
 
 
 numbers.dtype
 
 
-# In[ ]:
+# In[61]:
 
 
 # 2. How many elements are in the number Series?
 
 
-# In[147]:
+# In[62]:
 
 
 numbers.size
 
 
-# In[ ]:
+# In[63]:
 
 
 # 3. Perform the necessary manipulations by accessing 
@@ -426,12 +441,12 @@ numbers.size
 # numbers Series to a numeric data type.
 
 
-# In[176]:
+# In[105]:
 
 
-numf = numbers.str.replace('$','').str.replace(',','')
-numf = nf.astype('float')
-numf.dtype
+numf = numbers.str.replace('$','', regex=False).str.replace(',','', regex=False)
+numf = numf.astype('float')
+numf
 
 
 # In[ ]:
@@ -440,13 +455,13 @@ numf.dtype
 # 4. Run the code to discover the maximum value from the Series.
 
 
-# In[178]:
+# In[100]:
 
 
 numf.max()
 
 
-# In[180]:
+# In[101]:
 
 
 # 5. Run the code to discover the minimum value from the Series.
@@ -461,7 +476,7 @@ numf.min()
 # 6. What is the range of the values in the Series?
 
 
-# In[183]:
+# In[106]:
 
 
 range_of_numf = numf.max() - numf.min()
@@ -475,18 +490,18 @@ range_of_numf
 # output how many values fall into each bin.
 
 
-# In[186]:
+# In[113]:
 
 
-pd.cut(numf, bins = 4).value_counts().sort_index()
+numf.value_counts(bins=4)
 
 
-# In[187]:
+# In[118]:
 
 
 # 8. Plot the binned data in a meaningful way. Be sure to include a title and axis labels.
 
-pd.cut(numf, bins = 4).value_counts().sort_index().plot.bar()
+pd.cut(numf, bins = 4).value_counts().sort_index().plot.barh(title='Value').set(xlabel='count of instances', ylabel='value bins in USD')
 
 
 # In[ ]:
@@ -496,7 +511,7 @@ pd.cut(numf, bins = 4).value_counts().sort_index().plot.bar()
 from the following list: '''
 
 
-# In[189]:
+# In[67]:
 
 
 exam_scores = [60, 86, 75, 62, 93, 71, 60, 83, 95, 78, 65, 72, 69, 81, 96, 80, 85, 92, 82, 78]
@@ -510,7 +525,7 @@ es
 # 1. How many elements are in the exam_scores Series?
 
 
-# In[190]:
+# In[ ]:
 
 
 es.size
@@ -523,13 +538,13 @@ es.size
 # the mean, and the median scores for the exam_scores Series.
 
 
-# In[193]:
+# In[ ]:
 
 
 print(es.max(), '|', es.min(), '|', es.mean(), '|', es.median())
 
 
-# In[194]:
+# In[122]:
 
 
 #or
@@ -543,7 +558,7 @@ es.describe()
 # chart has a title and axis labels.
 
 
-# In[200]:
+# In[120]:
 
 
 import matplotlib.pyplot as plt
@@ -563,7 +578,7 @@ plt.ylabel("Score")
 # the Series as well.
 
 
-# In[201]:
+# In[68]:
 
 
 curved_grades = es + 4
@@ -579,7 +594,7 @@ curved_grades
 # Save this as a Series named letter_grades.
 
 
-# In[208]:
+# In[69]:
 
 
 def score(s):
@@ -602,7 +617,7 @@ letter_grades
 # way and include a title and axis labels.
 
 
-# In[213]:
+# In[121]:
 
 
 letter_grades.value_counts().sort_values().sort_index().plot.bar()
